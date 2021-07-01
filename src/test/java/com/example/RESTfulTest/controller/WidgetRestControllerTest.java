@@ -95,11 +95,10 @@ class WidgetRestControllerTest {
     @Test
     @DisplayName("PUT /rest/widget/1 ")
     void testUpdateWidget() throws Exception{
-        Widget widget1 = new Widget(1L, "New Widget", "This is my widget",1);
         Widget widgetToPut = new Widget(1L,"New Widget", "This is my widget",1);
         Widget widgetToReturn = new Widget(1L, "Edited Widget", "This is my edited widget", 2);
 
-        when(widgetService.findById(any())).thenReturn(Optional.of(widget1));
+        when(widgetService.findById(any())).thenReturn(Optional.of(widgetToPut));
         when(widgetService.save(any())).thenReturn(widgetToReturn);
 
         final ResultActions resultActions = mockMvc.perform(put("/rest/widget/{id}", 1L)
